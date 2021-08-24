@@ -14,14 +14,26 @@ window.onload = function() {
 let buttonId = document.getElementById("randomCard");
 buttonId.addEventListener("click", randomCard);
 
-//--------------------------------Crear carta aleatoria cada 10 segundos-----------
-setInterval(randomCard(), 100, "javascript");
 //--------------------------------Función carta aleatoria-----------
 function randomCard() {
   let icons = ["heart text-danger", "gem", "spa", "crown"];
   let randomIcon = Math.floor(Math.random() * icons.length);
-  let randomNumber = Math.floor(Math.random() * 11);
+  let randomNumber = Math.floor(Math.random() * 14);
   let iconParent = document.querySelectorAll(".icon");
+  if (randomNumber == 0) {
+    while (randomNumber == 0) {
+      randomNumber = Math.floor(Math.random() * 14);
+    }
+  } else if (randomNumber == 1) {
+    randomNumber = "A";
+  } else if (randomNumber == 11) {
+    randomNumber = "J";
+  } else if (randomNumber == 12) {
+    randomNumber = "Q";
+  } else if (randomNumber == 13) {
+    randomNumber = "K";
+  }
+
   document.querySelector(".number").innerHTML = `<span>${randomNumber}</span>`;
   iconParent[0].innerHTML = `<i class="fas fa-${icons[randomIcon]}"></i>`;
   iconParent[1].innerHTML = `<i class="fas fa-${icons[randomIcon]}"></i>`;
